@@ -1,4 +1,4 @@
-package com.angryman;
+package sample;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class Application {
+public class TomcatApplication {
     public static void main(final String[] args) throws LifecycleException {
         final Tomcat tomcat = new Tomcat();
         tomcat.setPort(8080);
