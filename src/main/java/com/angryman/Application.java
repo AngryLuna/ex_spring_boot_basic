@@ -1,6 +1,7 @@
 package com.angryman;
 
 import org.apache.catalina.connector.Connector;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
@@ -31,6 +32,8 @@ public class Application {
     }
 
     public static void main(final String[] args) {
-        SpringApplication.run(Application.class);
+        final SpringApplication springApplication = new SpringApplication(Application.class);
+        springApplication.setBannerMode(Banner.Mode.OFF);
+        springApplication.run(args);
     }
 }
