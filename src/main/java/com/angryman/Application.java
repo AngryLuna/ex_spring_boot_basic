@@ -4,6 +4,7 @@ import org.apache.catalina.connector.Connector;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
@@ -32,8 +33,14 @@ public class Application {
     }
 
     public static void main(final String[] args) {
-        final SpringApplication springApplication = new SpringApplication(Application.class);
-        springApplication.setBannerMode(Banner.Mode.OFF);
-        springApplication.run(args);
+        new SpringApplicationBuilder()
+                .sources(Application.class)
+                .banner((environment, sourceClass, out) -> { // 배너 설정을 하였으나 파일 설정이 우선시됨
+                    out.println("===========");
+                    out.println("Banner Test");
+                    out.println("===========");
+                })
+                .bannerMode(Banner.Mode.CONSOLE)
+                .run(args);
     }
 }
