@@ -1,5 +1,6 @@
 package com.angryman;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -9,14 +10,17 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(1)
 public class SampleApplicationRunner implements ApplicationRunner {
-    @Value("${test.name}")
-    private String testName;
+//    @Value("${test.name}")
+//    private String testName;
+//
+//    @Value("${test.age}")
+//    private int testAge;
+//
+//    @Value("${test.full.name}")
+//    private String testFullName;
 
-    @Value("${test.age}")
-    private int testAge;
-
-    @Value("${test.full.name}")
-    private String testFullName;
+    @Autowired
+    private SampleProperties sampleProperties;
 
     @Override
     public void run(final ApplicationArguments args) {
@@ -28,8 +32,8 @@ public class SampleApplicationRunner implements ApplicationRunner {
         // 2순위 : file:./application.properties
         // 3순위 : classpath:./config/application.properties
         // 4순위 : classpath:./application.properties
-        System.out.println(String.format("testName : %s", this.testName));
-        System.out.println(String.format("testAge : %d", this.testAge));
-        System.out.println(String.format("testFullName : %s", this.testFullName));
+        System.out.println(String.format("testName : %s", this.sampleProperties.getName()));
+        System.out.println(String.format("testAge : %d", this.sampleProperties.getAge()));
+        System.out.println(String.format("testFullName : %s", this.sampleProperties.getFullName()));
     }
 }
